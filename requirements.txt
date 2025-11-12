@@ -13,3 +13,8 @@ pytest
 httpx
 python-dotenv
 bcrypt==4.3.0
+pytest
+pytest-asyncio
+httpx[httpx]
+pytest-mock
+mongomock
