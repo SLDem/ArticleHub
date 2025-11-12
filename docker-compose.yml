@@ -1,0 +1,45 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/articlehub
+      - REDIS_URL=redis://redis:6379/0
+      - JWT_SECRET=supersecretkey
+    depends_on:
+      - mongo
+      - redis
+
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  worker:
+    build: .
+    command: celery -A app.tasks.celery_app worker -P solo --loglevel=info
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/articlehub
+      - REDIS_URL=redis://redis:6379/0
+      - JWT_SECRET=supersecretkey
+    depends_on:
+      - web
+      - redis
+      - mongo
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./certs:/etc/letsencrypt
+    depends_on:
+      - web

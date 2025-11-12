@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+pydantic[email]
+beanie[odm]
+motor
+python-jose[cryptography]
+passlib
+celery[redis]
+celery[asyncio]
+pytest
+httpx
+python-dotenv
+bcrypt==4.3.0
