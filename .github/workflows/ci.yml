@@ -49,4 +49,4 @@ jobs:
 
     steps:
       - name: Build Docker image (no push)
-        run: docker build -t test-image:${{ github.run_id }} .
+        run: docker build -t test-image:latest .
