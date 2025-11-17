@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
-from app.models.user import User
-from app.models.article import Article, ArticleAnalysis
-from app.routes import auth, articles
+from app.auth.models import User
+from app.articles.models import Article
+from app.auth import router as auth
+from app.articles import router as articles
 from app.config import settings
 
 app = FastAPI(title="ArticleHub API")

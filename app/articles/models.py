@@ -7,7 +7,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from app.config import settings
 
 
-class ArticleAnalysis(BaseModel):  # embedded document
+class ArticleAnalysis(BaseModel):
     word_count: int = 0
     unique_tags: int = 0
 

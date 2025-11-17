@@ -2,7 +2,7 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from jose import jwt, JWTError
 from app.config import settings
-from app.models.user import User
+from app.auth.models import User
 from beanie import PydanticObjectId
 
 security = HTTPBearer()
